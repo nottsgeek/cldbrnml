@@ -14,3 +14,5 @@
 #echo $out
 
 echo $1
+echo $uname
+echo $pass
