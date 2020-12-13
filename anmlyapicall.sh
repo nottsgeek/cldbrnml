@@ -6,13 +6,16 @@
 #z=1.4
 
 #if (( $(echo "$y > $z" |bc -l) )); then
- 	echo "Anomaly detected"
+# 	echo "Anomaly detected"
 #else
 #	echo "All good"
 #fi
 
 #echo $out
+change=$(curl -X POST -u $uname:$pass https://dev77787.service-now.com/api/now/table/incident}
+cnumber=`echo $change | jq '.result.number'`
+echo $cnumber > cfile
+#echo $1
+#echo $uname
+#echo $pass
 
-echo $1
-echo $uname
-echo $pass
