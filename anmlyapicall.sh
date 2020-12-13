@@ -4,7 +4,7 @@ out=$(curl -X POST -H "Content-Type: application/json" -d '{"data": $1}' https:/
 
 y=`echo $out | jq '.scores[0].score'`
 z=1.4
-
+echo $y
 if (( $(echo "$y > $z" |bc -l) )); then
   change=$(curl -X POST -u $uname:$pass https://dev77787.service-now.com/api/now/table/incident)
   cnumber=`echo $change | jq '.result.number'`
