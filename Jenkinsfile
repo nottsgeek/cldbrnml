@@ -2,7 +2,7 @@ node {
     stage("Cleanup") {
         cleanWs()
     }
-    stage("speak") {
+    stage("ENV Config") {
         slackSend color: '#BADA55', message: 'Checking for anomaly'
     }
     stage("API Call") {
