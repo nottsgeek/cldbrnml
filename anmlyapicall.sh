@@ -12,7 +12,7 @@
 #fi
 
 #echo $out
-change=$(curl -X POST -u $uname:$pass https://dev77787.service-now.com/api/now/table/incident})
+change=$(curl -X POST -u $uname:$pass https://dev77787.service-now.com/api/now/table/incident)
 cnumber=`echo $change | jq '.result.number'`
 echo $cnumber > cfile
 #echo $1
