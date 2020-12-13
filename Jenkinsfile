@@ -10,6 +10,7 @@ node {
             sh '/bin/sh cldbrnml/anmlyapicall.sh ${DetectionValue}'
     }
     stage("Notify Slack") {
-        slackSend color: '#BADA55', message: 'Anomaly detected'
+        cout = sh (script: 'cat cfile',returnStdout: true)
+        slackSend color: '#BADA55', message: "Anomaly detected, Incident ${cout} raised and assigned"
     }
 }
