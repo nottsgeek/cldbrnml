@@ -11,6 +11,6 @@ node {
     }
     stage("Notify Slack") {
         cout = sh (script: 'cat cfile',returnStdout: true)
-        slackSend color: '#BADA55', message: "Anomaly detected, Incident ${cout} raised and assigned"
+        slackSend color: '#BADA55', message: ${cout}
     }
 }
