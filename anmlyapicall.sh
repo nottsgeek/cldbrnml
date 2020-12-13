@@ -8,7 +8,7 @@ z=1.4
 if (( $(echo "$y > $z" |bc -l) )); then
  	change=$(curl -X POST -u $uname:$pass https://dev77787.service-now.com/api/now/table/incident)
   cnumber=`echo $change | jq '.result.number'`
-  echo "Anomaly detected, Incident " $cnumber " raised and assigned." > cfile
+  echo "Anomaly detected, Incident $cnumber raised and assigned." > cfile
 else
   echo "NO Anomaly detected" > cfile
 fi
