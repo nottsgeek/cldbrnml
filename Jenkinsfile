@@ -1,4 +1,7 @@
 node {
+    stage("Cleanup") {
+        CleanWS()
+    }
     stage("speak") {
         slackSend color: '#BADA55', message: 'Checking for anomaly'
     }
