@@ -7,7 +7,7 @@ node {
     }
     stage("API Call") {
             sh 'git clone https://github.com/nottsgeek/cldbrnml.git'
-            sh '/bin/sh cldbrnml/anmlyapicall.sh ${S3Size}'
+            sh '/bin/sh cldbrnml/s3detect.sh ${PCount}'
     }
     stage("Notify Slack") {
         cout = sh (script: 'cat cfile',returnStdout: true)
