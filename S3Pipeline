@@ -1,0 +1,16 @@
+node {
+    stage("Cleanup") {
+        cleanWs()
+    }
+    stage("ENV Config") {
+        slackSend color: '#BADA55', message: 'Checking for anomaly'
+    }
+    stage("API Call") {
+            sh 'git clone https://github.com/nottsgeek/cldbrnml.git'
+            sh '/bin/sh cldbrnml/anmlyapicall.sh ${S3Size}'
+    }
+    stage("Notify Slack") {
+        cout = sh (script: 'cat cfile',returnStdout: true)
+        slackSend color: '#BADA55', message: "${cout}"
+    }
+}
