@@ -6,11 +6,12 @@ node {
         sh 'git clone https://github.com/nottsgeek/cldbrnml.git'
         sh '/bin/sh cldbrnml/recvmsg.sh'
         about = sh (script: 'cat outfile',returnStdout: true)
+        if( env.about != "Abnormal" ) {
+            currentBuild.result = 'SUCCESS'
+            return
+        }
     }
-    if( ${about} != "Abnormal" ) {
-        currentBuild.result = 'SUCCESS'
-        return
-    }
+    
     stage("ENV Config") {
         slackSend color: '#FF5733', message: 'Increasing ASG Size'
     }
