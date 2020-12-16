@@ -7,7 +7,7 @@ node {
         sh '/bin/sh cldbrnml/recvmsg.sh'
         about = sh (script: 'cat outfile',returnStdout: true)
     }
-    if( $about != "ABNORMAL" ) {
+    if( ${about} != "Abnormal" ) {
         currentBuild.result = 'SUCCESS'
         return
     }
