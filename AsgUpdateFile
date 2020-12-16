@@ -1,0 +1,16 @@
+node {
+    stage("Cleanup") {
+        cleanWs()
+    }
+    stage("ENV Config") {
+        slackSend color: '#FF5733', message: 'Increasing ASG Size'
+    }
+    stage("API Call") {
+            sh 'git clone https://github.com/nottsgeek/cldbrnml.git'
+            sh '/bin/sh cldbrnml/asgupdate.sh'
+    }
+    stage("Notify Slack") {
+        cout = sh (script: 'cat cfile',returnStdout: true)
+        slackSend color: '#FF5733', message: "${cout}"
+    }
+}
