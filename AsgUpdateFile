@@ -5,6 +5,9 @@ node {
     stage("Checking SQS call") {
         sh 'git clone https://github.com/nottsgeek/cldbrnml.git'
         def status = sh(returnStatus: true, script: "/bin/sh cldbrnml/recvmsg.sh")
+        if (status != 0) {
+             currentBuild.result = 'FAILURE'
+        }
     }
     
     stage("ENV Config") {
