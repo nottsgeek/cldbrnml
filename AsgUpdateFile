@@ -4,12 +4,7 @@ node {
     }
     stage("Checking SQS call") {
         sh 'git clone https://github.com/nottsgeek/cldbrnml.git'
-        sh '/bin/sh cldbrnml/recvmsg.sh'
-        about = sh (script: 'cat outfile',returnStdout: true)
-        if( env.about != "Abnormal" ) {
-            currentBuild.result = 'SUCCESS'
-            return
-        }
+        def statusCode = sh script:cldbrnml/recvmsg.sh, returnStatus:true
     }
     
     stage("ENV Config") {
