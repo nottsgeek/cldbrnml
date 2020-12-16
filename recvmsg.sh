@@ -15,3 +15,4 @@ if [[ ${x} == "Abnormal" ]]; then
 else
 	echo "something" > outfile
 fi
+cat outfile
